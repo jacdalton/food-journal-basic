@@ -5,3 +5,50 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+puts "Creating test account"
+
+User.create!(email: "test@test.com", password: "123123")
+
+puts "Test account created (email: test@test.com, password: 123123)"
+
+puts "Creating random users"
+
+10.times do
+  User.create!(
+    email: Faker::Internet.free_email,
+    password: "123123"
+  )
+end
+
+puts "#{User.count - 1} user(s) created!"
+
+puts "Cooking up some food..."
+
+User.all.each do |user|
+  rand(1..5).times do 
+    Food.create!(
+      name: Faker::Food.dish,
+      calories: Faker::Number.within(range: 1..950),
+      portion_size: Faker::Food.measurement,
+      notes: Faker::Food.description,
+      user: user
+    )
+  end
+end
+
+puts "#{Food.count} food(s) created!"
+
+puts "Creating food entries..."
+
+User.all.each do |user|
+  rand(1..3).times do
+    FoodEntry.create!(
+      user: user,
+      food: user.foods.sample,
+      entry_date: Date.today
+    )
+  end
+end
+
+puts "#{FoodEntry.count} food entries created!"
