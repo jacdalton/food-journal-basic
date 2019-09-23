@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about', as: :about
 
   resources :foods
-  resources :food_entries
+  resources :entries
 
 end

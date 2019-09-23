@@ -1,10 +1,12 @@
 <h1>Food Entries</h1>
 
-<% @food_entries.each do |fe| %>
+<% @entries.each do |fe| %>
   <div class="card">
     <div class="card-body">
       <div class="card-title"><%= fe.entry_date %></div>
-      <div class="card-content"><%= fe.food.name %></div>
+      <% fe.foods.each do |food| %>
+        <div class="card-content"><%= food.name %></div>
+      <% end %>
     </div>
   </div>
 <% end %>
