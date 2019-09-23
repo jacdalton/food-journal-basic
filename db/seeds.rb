@@ -23,10 +23,10 @@ end
 
 puts "#{User.count - 1} user(s) created!"
 
-puts "Cooking up some food..."
+puts "Cooking up some food & creating entries..."
 
 User.all.each do |user|
-  rand(1..5).times do 
+  rand(3..5).times do 
     Food.create!(
       name: Faker::Food.dish,
       calories: Faker::Number.within(range: 1..950),
@@ -34,7 +34,13 @@ User.all.each do |user|
       notes: Faker::Food.description,
       user: user
     )
+    Entry.create!(
+      entry_date: Date.today,
+      user: user
+    ).tap do |entry|
+      entry.foods = Food.all.sample(2)
+    end
   end
 end
 
-puts "#{Food.count} food(s) created!"
+puts "#{Food.count} food(s) & #{Entry.count} entries created!"
