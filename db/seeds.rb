@@ -38,17 +38,3 @@ User.all.each do |user|
 end
 
 puts "#{Food.count} food(s) created!"
-
-puts "Creating food entries..."
-
-User.all.each do |user|
-  rand(1..3).times do
-    FoodEntry.create!(
-      user: user,
-      food: user.foods.sample,
-      entry_date: Date.today
-    )
-  end
-end
-
-puts "#{FoodEntry.count} food entries created!"
