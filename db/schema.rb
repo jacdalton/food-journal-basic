@@ -10,19 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_10_231648) do
+ActiveRecord::Schema.define(version: 2019_09_23_212437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "food_entries", force: :cascade do |t|
+  create_table "entries", force: :cascade do |t|
     t.datetime "entry_date"
-    t.bigint "food_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["food_id"], name: "index_food_entries_on_food_id"
-    t.index ["user_id"], name: "index_food_entries_on_user_id"
+    t.index ["user_id"], name: "index_entries_on_user_id"
+  end
+
+  create_table "entries_foods", force: :cascade do |t|
+    t.bigint "food_id"
+    t.bigint "entry_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["entry_id"], name: "index_entries_foods_on_entry_id"
+    t.index ["food_id"], name: "index_entries_foods_on_food_id"
   end
 
   create_table "foods", force: :cascade do |t|
@@ -48,7 +55,8 @@ ActiveRecord::Schema.define(version: 2019_09_10_231648) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "food_entries", "foods"
-  add_foreign_key "food_entries", "users"
+  add_foreign_key "entries", "users"
+  add_foreign_key "entries_foods", "entries"
+  add_foreign_key "entries_foods", "foods"
   add_foreign_key "foods", "users"
 end
