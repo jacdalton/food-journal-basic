@@ -2,7 +2,7 @@ class EntriesController < ApplicationController
   before_action :set_entry, only: [:show, :edit, :update, :destroy]
 
   def index
-    @entries = Entry.all
+    @entries = Entry.all.group_by { |entry| entry.entry_date.to_date }
   end
 
   def show

@@ -3,9 +3,11 @@
 <% @entries.each do |fe| %>
   <div class="card">
     <div class="card-body">
-      <div class="card-title"><%= fe.entry_date %></div>
-      <% fe.foods.each do |food| %>
-        <div class="card-content"><%= food.name %></div>
+      <div class="card-title"><%= fe.first %></div>
+      <% fe.second.each do |ent| %>
+        <% ent.foods.each do |food| %>
+          <p><%= food.name %></p>
+        <% end %>
       <% end %>
     </div>
   </div>
