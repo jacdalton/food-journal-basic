@@ -1,8 +1,8 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: [:show, :edit, :update, :destroy]
-
+  before_action :authorize_food, except: :index
   def index
-    @foods = Food.all
+    @foods = policy_scope(Food)
   end
 
   def show
@@ -45,6 +45,10 @@ class FoodsController < ApplicationController
 
   def set_food
     @food = Food.find(params[:id])
+  end
+
+  def authorize_food
+    authorize @food
   end
 
 end

@@ -6,7 +6,9 @@
       <div class="card-title"><%= fe.first %></div>
       <% fe.second.each do |ent| %>
         <% ent.foods.each do |food| %>
-          <p><%= food.name %></p>
+          <% if policy(food).edit? %>
+            <p><%= food.name %> <small><%= food.user.email %></small></p>
+          <% end %>
         <% end %>
       <% end %>
     </div>

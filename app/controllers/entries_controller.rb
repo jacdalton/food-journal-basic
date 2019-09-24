@@ -1,8 +1,16 @@
 class EntriesController < ApplicationController
   before_action :set_entry, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_entry, except: :index
 
   def index
-    @entries = Entry.all.group_by { |entry| entry.entry_date.to_date }
+    @entries = policy_scope(Entry).order(entry_date: :desc).group_by { |entry| entry.entry_date.to_date }
+    # @foods = @entries.each do |date, entries|
+    #   entries.each do |entry|
+    #     entry.foods.each do |food|
+    #       policy_scope(food)
+    #     end
+    #   end
+    # end
   end
 
   def show
@@ -45,5 +53,9 @@ class EntriesController < ApplicationController
 
   def set_entry
     @entry = FoodEntry.find(params[:id])
+  end
+
+  def authorize_entry
+    authorize @entry
   end
 end
