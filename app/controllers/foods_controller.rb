@@ -2,7 +2,7 @@ class FoodsController < ApplicationController
   before_action :set_food, only: [:show, :edit, :update, :destroy]
 
   def index
-    @foods = Food.all
+    @foods = policy_scope(Food)
   end
 
   def show
