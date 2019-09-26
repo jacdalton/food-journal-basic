@@ -1,19 +1,23 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: [:show, :edit, :update, :destroy]
-  after_action :authorize_food, except: :index
+
   def index
     @foods = policy_scope(Food)
   end
 
   def show
+    authorize_food
   end
 
   def new
     @food = Food.new
+    authorize_food
   end
 
   def create
     @food = Food.new(food_params)
+    authorize_food
+    @food.user = current_user
     if @food.save
       redirect_to food_path(@food)
     else
@@ -22,9 +26,11 @@ class FoodsController < ApplicationController
   end
 
   def edit
+    authorize_food
   end
 
   def update
+    authorize_food
     if @food.update(food_params)
       redirect_to food_path(@food)
     else
@@ -33,6 +39,7 @@ class FoodsController < ApplicationController
   end
 
   def destroy
+    authorize_food
     @food.destroy
     redirect_to foods_path
   end
