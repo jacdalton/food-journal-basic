@@ -16,3 +16,15 @@
 // const imagePath = (name) => images(name, true)
 
 import "bootstrap";
+import { initSweetalert } from '../plugins/init_sweetalert';
+
+initSweetalert('#delete-btn', {
+  title: "Are you sure?",
+  text: "This will delete the food and all remove it from all entries",
+  icon: "warning"
+}, (value) => {
+  if (value) {
+    const link = document.querySelector('#delete-link');
+    link.click();
+  }
+});
