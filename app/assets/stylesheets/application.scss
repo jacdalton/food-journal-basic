@@ -14,4 +14,10 @@
  *= require_self
  */
 
- @import "bootstrap/scss/bootstrap";
+ // External libraries
+@import "bootstrap/scss/bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+// SCSS Partials
+@import "components/index";
