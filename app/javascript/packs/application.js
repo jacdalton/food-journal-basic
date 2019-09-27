@@ -17,6 +17,9 @@
 
 import "bootstrap";
 import { initSweetalert } from '../plugins/init_sweetalert';
+import { initUpdateNavbarOnScroll } from '../components/navbar';
+
+initUpdateNavbarOnScroll();
 
 initSweetalert('#delete-btn', {
   title: "Are you sure?",
