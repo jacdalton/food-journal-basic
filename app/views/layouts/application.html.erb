@@ -12,11 +12,15 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
+    <div class="main-container">
 
-    <%= yield %>
-    <%= render 'shared/footer' %>
+      <%= render 'shared/navbar' %>
+      <%= render 'shared/flashes' %>
+
+      <%= yield %>
+      <%= render 'shared/footer' %>
+      
+    </div>
     <%= javascript_pack_tag 'application' %>
   </body>
 </html>
