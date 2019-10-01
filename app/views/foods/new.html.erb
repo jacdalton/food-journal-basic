@@ -1,14 +1,16 @@
-<div class="container border p-3">
-  <div class="row">
-    <div class="col-8">
-      <h2>Add a new food</h2>
-        <%= simple_form_for @food do |f| %>
-          <%= f.input :name, placeholder: "Ex. 'Spaghetti', 'Mac&Cheese'", label: "Food Name" %>
-          <%= f.input :calories, hint: "Enter the number of calories", label: "Calories" %>
-          <%= f.input :portion_size, placeholder: "Ex. '300g', '1/2 serving', etc.", label: "Portion Size (Optional)" %>
-          <%= f.input :notes, placeholder: "Anything else you want to say about it?", label: "Notes (Optional)" %>
-          <%= f.button :submit %>
-        <% end %>
+<div class="navbar-wrapper">
+  <div class="container border p-3">
+    <div class="row">
+      <div class="col-8">
+        <h2>Add a new food</h2>
+          <%= simple_form_for @food do |f| %>
+            <%= f.input :name, placeholder: "Ex. 'Spaghetti', 'Mac&Cheese'", label: "Food Name" %>
+            <%= f.input :calories, hint: "Enter the number of calories", label: "Calories" %>
+            <%= f.input :portion_size, placeholder: "Ex. '300g', '1/2 serving', etc.", label: "Portion Size (Optional)" %>
+            <%= f.input :notes, placeholder: "Anything else you want to say about it?", label: "Notes (Optional)" %>
+            <%= f.button :submit %>
+          <% end %>
+      </div>
     </div>
   </div>
 </div>
