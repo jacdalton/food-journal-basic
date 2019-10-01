@@ -44,7 +44,10 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 gem 'pundit'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
-gem 'sassc-rails'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'jquery-rails'
+gem 'bootstrap', '~> 4.3.1'
+gem 'sassc-rails', '>= 2.1.0'
 gem 'simple_form'
 
 group :development, :test do
