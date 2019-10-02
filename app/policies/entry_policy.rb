@@ -5,8 +5,12 @@ class EntryPolicy < ApplicationPolicy
     end
   end
 
+  def show?
+    true
+  end
+
   def create?
-    return true
+    true
   end
 
   def update?

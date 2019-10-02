@@ -4,7 +4,7 @@
   <% @entries.each do |fe| %>
     <div class="card">
       <div class="card-body">
-        <div class="card-title"><%= fe.first %></div>
+        <div class="card-title"><%= link_to fe.first, entry_path(fe.second) %></div>
         <% fe.second.each do |ent| %>
           <% ent.foods.each do |food| %>
             <% if policy(food).edit? %>
