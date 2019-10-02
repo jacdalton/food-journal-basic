@@ -3,7 +3,7 @@ class EntriesController < ApplicationController
   before_action :authorize_entry, except: :index
 
   def index
-    @entries = policy_scope(Entry).order(entry_date: :desc).group_by { |entry| entry.entry_date.to_date }
+    @entries = policy_scope(Entry).order(entry_date: :desc).group_by { |entry| entry.entry_date }
     # @foods = @entries.each do |date, entries|
     #   entries.each do |entry|
     #     entry.foods.each do |food|
@@ -14,6 +14,11 @@ class EntriesController < ApplicationController
   end
 
   def show
+    calories = []
+    @entry.foods.each do |food|
+      calories << food.calories
+    end
+    @calories = calories.sum
   end
 
   def new
@@ -52,7 +57,7 @@ class EntriesController < ApplicationController
   end
 
   def set_entry
-    @entry = FoodEntry.find(params[:id])
+    @entry = Entry.find(params[:id])
   end
 
   def authorize_entry

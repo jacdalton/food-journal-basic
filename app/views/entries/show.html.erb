@@ -1,0 +1,10 @@
+<div class="navbar-wrapper">
+  <div class="container">
+    <h2><%= @entry.entry_date %></h2>
+    <h3>Total calories: <%= @calories %></h3>
+    <% @entry.foods.each do |food| %>
+      <p><%= food.name %> (Portion: <%= food.portion_size %>)</p>
+      <p><%= food.calories %> Calories</p>
+    <% end %>
+  </div>
+</div>
