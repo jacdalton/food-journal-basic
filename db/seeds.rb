@@ -30,8 +30,14 @@ def adv_time
   Date.current.advance(days: n)
 end
 
+date_array = []
+
+5.times do
+  date_array << adv_time
+end
+
 User.all.each do |user|
-  rand(3..5).times do 
+  rand(5..10).times do 
     Food.create!(
       name: Faker::Food.dish,
       calories: Faker::Number.within(range: 1..950),
@@ -39,11 +45,14 @@ User.all.each do |user|
       notes: Faker::Food.description,
       user: user
     )
+  end
+
+  rand(3..5).times do
     Entry.create!(
-      entry_date: adv_time,
+      entry_date: date_array.sample,
       user: user
     ).tap do |entry|
-      entry.foods = Food.all.sample(2)
+      entry.foods = Food.all.sample(3)
     end
   end
 end
