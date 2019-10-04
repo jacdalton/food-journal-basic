@@ -3,14 +3,7 @@ class EntriesController < ApplicationController
   before_action :authorize_entry, except: :index
 
   def index
-    @entries = policy_scope(Entry).order(entry_date: :desc).group_by { |entry| entry.entry_date }
-    # @foods = @entries.each do |date, entries|
-    #   entries.each do |entry|
-    #     entry.foods.each do |food|
-    #       policy_scope(food)
-    #     end
-    #   end
-    # end
+    @entries = policy_scope(Entry).order(entry_date: :desc)
   end
 
   def show
