@@ -25,17 +25,6 @@ puts "#{User.count - 1} user(s) created!"
 
 puts "Cooking up some food & creating entries..."
 
-def adv_time
-  n = rand(0..10)
-  Date.current.advance(days: n)
-end
-
-date_array = []
-
-5.times do
-  date_array << adv_time
-end
-
 User.all.each do |user|
   rand(5..10).times do 
     Food.create!(
@@ -46,15 +35,27 @@ User.all.each do |user|
       user: user
     )
   end
-
-  rand(3..5).times do
-    Entry.create!(
-      entry_date: date_array.sample,
-      user: user
-    ).tap do |entry|
-      entry.foods = Food.all.sample(3)
-    end
+  Entry.create!(
+    entry_date: Date.today,
+    user: user
+  ).tap do |entry|
+    entry.foods = Food.all.sample(3)
   end
+
+  Entry.create!(
+    entry_date: Date.today - 1,
+    user: user
+  ).tap do |entry|
+    entry.foods = Food.all.sample(5)
+  end
+
+  Entry.create!(
+    entry_date: Date.today - 2,
+    user: user
+  ).tap do |entry|
+    entry.foods = Food.all.sample(4)
+  end
+
 end
 
 puts "#{Food.count} food(s) & #{Entry.count} entries created!"

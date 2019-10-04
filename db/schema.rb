@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2019_09_23_212437) do
   enable_extension "plpgsql"
 
   create_table "entries", force: :cascade do |t|
-    t.date "entry_date", default: "2019-10-02"
+    t.date "entry_date", default: "2019-10-04"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
