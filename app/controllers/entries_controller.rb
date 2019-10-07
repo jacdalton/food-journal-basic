@@ -7,11 +7,7 @@ class EntriesController < ApplicationController
   end
 
   def show
-    calories = []
-    @entry.foods.each do |food|
-      calories << food.calories
-    end
-    @calories = calories.sum
+    @calories = @entry.sum_calories
   end
 
   def new
