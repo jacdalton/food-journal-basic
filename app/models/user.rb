@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :foods
   has_many :entries
+  has_many :calorie_goals
 end
