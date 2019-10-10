@@ -1,10 +1,31 @@
 <div class="navbar-wrapper">
   <div class="container">
-    <h2><%= @entry.entry_date %></h2>
+    <h2><%= @entry.entry_date.strftime('%b %d %Y') %></h2>
     <h3>Total calories: <%= @calories %></h3>
     <% @entry.foods.each do |food| %>
-      <p><%= food.name %> (Portion: <%= food.portion_size %>)</p>
+      <p style="margin: 0;"><%= food.name %> (Portion: <%= food.portion_size %>)</p>
+      <small>submitted by <%= food.user.email %></small>
       <p><%= food.calories %> Calories</p>
     <% end %>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addFood">
+      Add food
+    </button>
+
+    <div class="modal fade" id="addFood" tabindex="-1" role="dialog" aria-labelledby="addFoodLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addFoodLabel">Add food</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= render 'edit' %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
