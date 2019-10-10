@@ -27,6 +27,8 @@ class EntriesController < ApplicationController
   end
 
   def update
+    food = Food.find(params[:entry][:foods])
+    @entry.foods << food
     if @entry.update(entry_params)
       redirect_to entry_path(@entry)
     else
@@ -42,7 +44,7 @@ class EntriesController < ApplicationController
   private
 
   def entry_params
-    params.require(:entry).permit(:entry_date, :food)
+    params.require(:entry).permit(:entry_date, { foods: [] } )
   end
 
   def set_entry
