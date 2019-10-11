@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>FoodJournalBasic</title>
+    <meta name="Description" content="Food journaling brought to the digital age">
+    <%= favicon_link_tag asset_path('book_icon.png') %>
+    <title>Food Journal 2.0</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -17,9 +19,9 @@
     <div class="main-container">
 
       <%= render 'shared/navbar' %>
-      <%= render 'shared/flashes' %>
 
       <%= yield %>
+      <%= render 'shared/flashes' %>
       <%= render 'shared/footer' %>
       
     </div>
