@@ -4,7 +4,7 @@
     <h3>Total calories: <%= @calories %></h3>
     <% @entry.foods.each do |food| %>
       <div class="food-container" data-food-id="<%= food.id %>">
-        <p style="margin: 0;"><%= food.name %> (Portion: <%= food.portion_size %>) <span><%= link_to "Remove", remove_food_entry_path(entry: @entry, food: food), method: :delete, remote: true %></span></p>
+        <p style="margin: 0;"><%= food.name %> (Portion: <%= food.portion_size %>) <span><%= link_to "Remove", remove_food_entry_path(entry: @entry, food: food), method: :delete %></span></p>
         <small>submitted by <%= food.user.email %></small>
         <p><%= food.calories %> Calories</p>
       </div>

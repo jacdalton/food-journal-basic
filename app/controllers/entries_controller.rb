@@ -44,6 +44,7 @@ class EntriesController < ApplicationController
   def remove_food
     @food = Food.find(params[:food])
     @entry.foods.delete(@food)
+    redirect_to :entry
   end
 
   private
