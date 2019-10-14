@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about', as: :about
 
   resources :foods
-  resources :entries
+  resources :entries do
+    member do
+      delete 'remove_food', to: 'entries#remove_food'
+    end
+  end
 
 end
