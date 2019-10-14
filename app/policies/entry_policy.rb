@@ -20,4 +20,8 @@ class EntryPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  def remove_food?
+    record.user == user
+  end
 end

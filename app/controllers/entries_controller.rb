@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-  before_action :set_entry, only: [:show, :edit, :update, :destroy]
+  before_action :set_entry, only: [:show, :edit, :update, :destroy, :remove_food]
   before_action :authorize_entry, except: :index
 
   def index
@@ -39,6 +39,11 @@ class EntriesController < ApplicationController
   def destroy
     @entry.destroy
     redirect_to entries_path
+  end
+
+  def remove_food
+    @food = Food.find(params[:food])
+    @entry.foods.delete(@food)
   end
 
   private
