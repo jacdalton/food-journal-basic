@@ -1,0 +1,16 @@
+<div class="navbar-wrapper">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+      <h1>Edit <%= @food.name %></h1>
+      <%= simple_form_for @food do |f| %>
+        <%= f.input :name %>
+        <%= f.input :calories %>
+        <%= f.input :portion_size %>
+        <%= f.input :notes %>
+        <%= f.button :submit, class: 'btn btn-primary', value: 'Update' %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
