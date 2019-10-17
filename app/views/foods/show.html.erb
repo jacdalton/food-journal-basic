@@ -3,9 +3,16 @@
     <div class="card">
       <div class="card-title">
         <h2><%= @food.name %></h2>
-        <span>
-          <button id="delete-btn" class="btn btn-danger">Delete</button><%= link_to "", food_path(@food), method: :delete, id: "delete-link", class: "hidden" %>
-        </span>
+        <div class="crud-buttons">
+          <span>
+            <%= link_to edit_food_path(@food) do %>
+              <button id="edit-btn" class="btn btn-warning">Edit</button>
+            <% end %>
+          </span>
+          <span>
+            <button id="delete-btn" class="btn btn-danger">Delete</button><%= link_to "", food_path(@food), method: :delete, id: "delete-link", class: "hidden" %>
+          </span>
+        </div>
       </div>
       <div class="card-body">
         <p><%= @food.calories %> calories</p>
