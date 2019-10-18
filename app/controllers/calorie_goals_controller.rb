@@ -1,16 +1,16 @@
 class CalorieGoalsController < ApplicationController
-  before_action :set_goal, only: :show
-
   def index
-    @calorie_goals = CalorieGoal.all
+    @calorie_goals = policy_scope(CalorieGoal)
   end
 
   def show
-    @calorie_goal = CalorieGoal.find(params[:id])
+    @calorie_goal = policy_scope(CalorieGoal).last
+    authorize @calorie_goal
   end
 
   def new
     @calorie_goal = CalorieGoal.new
+    authorize @calorie_goal
   end
 
   def create
@@ -20,6 +20,7 @@ class CalorieGoalsController < ApplicationController
     else
       render 'new'
     end
+    authorize @calorie_goal
   end
 
   private
