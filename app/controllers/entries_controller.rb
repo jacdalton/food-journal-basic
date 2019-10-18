@@ -1,9 +1,10 @@
 class EntriesController < ApplicationController
   before_action :set_entry, only: [:show, :edit, :update, :destroy, :remove_food]
-  before_action :authorize_entry, except: :index
-
+  before_action :authorize_entry, except: [:index, :new, :create]
+  after_action :authorize_entry, only: [:new, :create]
   def index
-    @entries = policy_scope(Entry).order(entry_date: :desc)
+    @entries = policy_scope(Entry)
+    @entry = Entry.new
   end
 
   def show
@@ -16,6 +17,9 @@ class EntriesController < ApplicationController
 
   def create
     @entry = Entry.new(entry_params)
+    @entry.user = current_user
+    food = Food.find(params[:entry][:foods])
+    @entry.foods << food
     if @entry.save
       redirect_to entry_path(@entry)
     else

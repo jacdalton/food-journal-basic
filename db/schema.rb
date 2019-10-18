@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2019_10_07_202542) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.date "entry_date", default: "2019-10-07"
+    t.date "entry_date", default: -> { "now()" }
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
