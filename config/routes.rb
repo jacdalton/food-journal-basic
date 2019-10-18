@@ -12,4 +12,6 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :calorie_goals, only: [:index, :show, :new, :create]
+
 end
