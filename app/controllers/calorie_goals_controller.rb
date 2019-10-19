@@ -3,9 +3,11 @@ class CalorieGoalsController < ApplicationController
     @calorie_goals = policy_scope(CalorieGoal)
   end
 
-  def show
+  def show_goal
     @calorie_goal = policy_scope(CalorieGoal).last
     authorize @calorie_goal
+    @new_calorie_goal = CalorieGoal.new
+    authorize @new_calorie_goal
   end
 
   def new
@@ -15,8 +17,9 @@ class CalorieGoalsController < ApplicationController
 
   def create
     @calorie_goal = CalorieGoal.new(goal_params)
+    @calorie_goal.user = current_user
     if @calorie_goal.save
-      redirect_to calorie_goal_path(@calorie_goal)
+      redirect_to show_goal_path
     else
       render 'new'
     end
