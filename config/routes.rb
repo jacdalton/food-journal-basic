@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :calorie_goals, only: [:index, :show, :new, :create]
+  resources :calorie_goals, only: [:index, :new, :create]
+  get 'show_goal', to: 'calorie_goals#show_goal', as: :show_goal
 
 end

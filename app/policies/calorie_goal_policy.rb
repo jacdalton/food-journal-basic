@@ -9,7 +9,7 @@ class CalorieGoalPolicy < ApplicationPolicy
     true
   end
 
-  def show?
+  def show_goal?
     true
   end
 
