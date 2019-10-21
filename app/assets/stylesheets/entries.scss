@@ -1,3 +1,13 @@
 // Place all the styles related to the FoodEntries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.deficit {
+  font-weight: bold;
+  color: rgb(11, 101, 11);
+}
+
+.excess {
+  font-weight: bold;
+  color: rgb(143, 7, 7);
+}

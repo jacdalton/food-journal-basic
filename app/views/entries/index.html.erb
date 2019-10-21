@@ -27,8 +27,18 @@
             <small>
               <%= link_to "View Records", entry_path(entry) %>
             </small>
-            <p>Calorie total: <%= entry.sum_calories %></p>
-            <p>Deficit: ####</p>
+            <% goal = CalorieGoal.max_calories(current_user, date) %>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Goal: <%= goal.nil? ? 'No Goal Recorded' : goal.calories %></li>
+              <li class="list-group-item">Calorie total: <%= entry.sum_calories %></li>
+                <% if goal.nil? %>
+                  <li class="list-group-item">Not Enough Data</li>
+                <% elsif (goal.calories - entry.sum_calories).positive? %>
+                  <li class="list-group-item">Deficit: <span class="deficit"><%= (goal.calories - entry.sum_calories).round(1) %></span></li>
+                <% else %>
+                  <li class="list-group-item">Excess: <span class="excess"><%= (goal.calories - entry.sum_calories).round(1) * -1 %></span></li>
+                <% end %>
+            </ul>
           <% end %>
       <% end %>
     </div>
