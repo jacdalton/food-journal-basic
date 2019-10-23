@@ -1,5 +1,22 @@
-<%= simple_form_for @entry do |f| %>
+<%= simple_form_for @entry, html: { onsubmit: "return verifyEntry()", name: "entryForm" }, remote: true do |f| %>
   <%= f.input :entry_date %>
   <%= f.input :foods, collection: Food.where(user: current_user) %>
+  <div id="errorMessage"></div>
   <%= f.button :submit %>
 <% end %>
+
+<script>
+const verifyEntry = () => {
+  const food = document.forms['entryForm']['entry[foods]'].value;
+  console.log(food);
+  if (food === '') {
+    const error = document.getElementById('errorMessage');
+    error.innerHTML = "* Please select a food";
+    error.classList += "excess";
+    return false;
+  } else {
+    error.innerHTML = "";
+    return true;
+  }
+}
+</script>

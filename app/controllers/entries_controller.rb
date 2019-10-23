@@ -21,9 +21,15 @@ class EntriesController < ApplicationController
     food = Food.find(params[:entry][:foods])
     @entry.foods << food
     if @entry.save
-      redirect_to entry_path(@entry)
+      respond_to do |format|
+        format.html { redirect_to entry_path(@entry) }
+        format.js
+      end
     else
-      render :new
+      respond_to do |format|
+        format.html { render 'entries/new' }
+        format.js
+      end
     end
   end
 
