@@ -18,8 +18,17 @@
 import "bootstrap";
 import { initSweetalert } from '../plugins/init_sweetalert';
 import { initUpdateNavbarOnScroll } from '../components/navbar';
+import { calcCalories } from '../components/calculator';
 
 initUpdateNavbarOnScroll();
+    
+document.addEventListener('turbolinks:load', function() {
+  const calculateBtn = document.getElementById('calculate');
+  if(calculateBtn) {
+    calculateBtn.addEventListener('click', calcCalories);
+  }
+});
+
 
 initSweetalert('#delete-btn', {
   title: "Are you sure?",
