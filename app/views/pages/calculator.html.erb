@@ -1,0 +1,81 @@
+<div class="navbar-wrapper">
+  <div class="container">
+  <h1>Basal Metabolic Rate (BMR) Calculator</h1>
+  <p>BMR is a way of measuring approximately the amount of calories that your body burns throughout the course of a day, without regard to outside influences (i.e. exercise). This calculator uses the Mifflin St-Jeor formula. To read more about BMR, please check out the <a href="https://en.wikipedia.org/wiki/Basal_metabolic_rate" target="_blank">Wikipedia page</a> for it. Please note that this does not take lean muscle mass into consideration and is only meant to provide a loose estimate. It should not be used in place of advice given by a healthcare professional. Please consult a doctor before starting any diet.</p>
+    <form>
+      <div class="form-group row">
+        <div class="col-4">
+          <div class="form-check form-check-inline">
+            <label for="genderOptions" class="form-check-label col-form-label-lg">Gender</label>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-check form-check-inline">
+            <input type="radio" class="form-check-input form-control-lg" name="genderOptions" id="male" value="male">
+            <label for="male" class="form-check-label col-form-label-lg">Male</label>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-check form-check-inline">
+            <input type="radio" class="form-check-input form-control-lg" name="genderOptions" id="female" value="female">
+            <label for="female" class="form-check-label col-form-label-lg">Female</label>
+          </div>
+        </div>
+        <label for="age" class="col-sm-2 col-form-label-lg">Age</label>
+        <div class="col-sm-10">
+          <input type="number" name="age" class="form-control" id="age">
+        </div>
+
+        <div class="nav-fill m-2">
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <h5 class="nav-item nav-link active" id="nav-tab-imperial" data-toggle="tab" role="tab" aria-controls="nav-imperial" href="#nav-imperial">Imperial</h5>
+            <h5 class="nav-item nav-link" id="nav-tab-metric" data-toggle="tab" role="tab" aria-controls="nav-metric" href="#nav-metric">Metric</h5>
+          </div>
+        </div>
+
+      </div>
+      <div class="tab-content" id="nav-tab-content">
+        <div class="tab-pane show active" id="nav-imperial" role="tabpanel" aria-labelledby="nav-imperial-tab">
+        <div class="card mb-3">
+          <div class="card-header">Weight (lbs)</div>
+          <div class="card-content p-3">
+            <input type="number" name="imp-weight" class="form-control" id="imp-weight">
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">Height</div>
+          <div class="card-content p-3">
+            <div class="row">
+              <label for="feet" class="col-sm-2 col-form-label">Feet</label>
+              <div class="col-12 col-md-4">
+                <input type="number" name="feet" class="form-control-inline" id="feet">
+              </div>
+              <label for="inches" class="col-sm-2 col-form-label">Inches</label>
+              <div class="col-12 col-md-4">
+                <input type="number" name="inches" class="form-control-inline" id="inches">
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="tab-pane" id="nav-metric" role="tabpanel" aria-labelledby="nav-metric-tab">
+          <div class="card mb-3">
+            <div class="card-header">Weight (kg)</div>
+            <div class="card-content p-3">
+              <input type="number" name="met-weight" class="form-control" id="met-weight">
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">Height (cm)</div>
+            <div class="card-content p-3">
+              <input type="number" name="met-height" class="form-control" id="met-height">
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary my-2" id="calculate">Calculate</button>
+    </form>
+    <span id="calories" class="btn-outline-primary my-1"></span>
+    <span id="one-pound" class="btn-outline-success my-1"></span>
+  </div>
+</div>
