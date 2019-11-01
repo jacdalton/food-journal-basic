@@ -1,0 +1,9 @@
+const refreshForm = (innerHTML) => {
+  const form = document.getElementById('new_entry');
+  form.innerHTML = innerHTML;
+};
+
+<%= if @entry.errors.any? %>
+  console.log(<%= @entry.errors.messages %>);
+  refreshForm('<%= j render(partial: 'new'), entry: @entry %>');
+<% end %>

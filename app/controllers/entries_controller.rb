@@ -18,12 +18,11 @@ class EntriesController < ApplicationController
   def create
     @entry = Entry.new(entry_params)
     @entry.user = current_user
-    food = Food.find(params[:entry][:foods])
-    @entry.foods << food
+    @entry.foods << Food.find(params[:entry][:foods])
     if @entry.save
       redirect_to entry_path(@entry)
     else
-      render :new
+      render 'new'
     end
   end
 

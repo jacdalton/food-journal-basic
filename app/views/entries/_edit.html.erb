@@ -1,4 +1,4 @@
 <%= simple_form_for @entry do |f| %>
-  <%= f.input :foods, collection: Food.where('user_id = ? AND id NOT IN (?)', current_user, @entry.foods.map{ |f| f.id }).distinct %>
+  <%= f.input :foods, collection: Food.where('user_id = ? AND id NOT IN (?)', current_user, @entry.foods.empty? ? 0 : @entry.foods.map{ |f| f.id }).distinct, include_blank: false %>
   <%= f.submit %>
 <% end %>

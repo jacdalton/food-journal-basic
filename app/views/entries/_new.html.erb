@@ -1,5 +1,0 @@
-<%= simple_form_for @entry do |f| %>
-  <%= f.input :entry_date %>
-  <%= f.input :foods, collection: Food.where(user: current_user) %>
-  <%= f.button :submit %>
-<% end %>
