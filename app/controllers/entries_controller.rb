@@ -18,18 +18,11 @@ class EntriesController < ApplicationController
   def create
     @entry = Entry.new(entry_params)
     @entry.user = current_user
-    food = Food.find(params[:entry][:foods])
-    @entry.foods << food
+    @entry.foods << Food.find(params[:entry][:foods])
     if @entry.save
-      respond_to do |format|
-        format.html { redirect_to entry_path(@entry) }
-        format.js
-      end
+      redirect_to entry_path(@entry)
     else
-      respond_to do |format|
-        format.html { render 'entries/new' }
-        format.js
-      end
+      render 'new'
     end
   end
 
