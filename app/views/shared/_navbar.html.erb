@@ -10,6 +10,9 @@
         <%= link_to "My Foods", foods_path, class: "dropdown-item" %>
         <%= link_to "My Journal", entries_path, class: "dropdown-item" %>
         <%= link_to "BMR Calculator", calculator_path, class: "dropdown-item" %>
+        <%= link_to "Update Calorie Goal", show_goal_path, class: "dropdown-item" %>
+        <%= link_to "View Previous Goals", calorie_goals_path, class: "dropdown-item"  %>
+        <%= link_to "My Account", edit_user_registration_path, class: "dropdown-item" %>
         <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
       </div>
     </div>
