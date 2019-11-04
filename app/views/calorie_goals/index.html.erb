@@ -1,1 +1,14 @@
-<h1>Historical calorie goals</h1>
+<div class="navbar-wrapper">
+  <div class="container">
+    <h1>Historical calorie goals</h1>
+    <ul class="list-group list-group-flush">
+    <% @calorie_goals.each do |goal| %>
+      <% if goal == @calorie_goals.first %>  
+        <li class="list-group-item deficit"><%= goal.calories %> daily calories, effective from <%= goal.created_at.strftime('%b %d, %Y %l:%M %p') %> (Current)</li>
+      <% else %>
+        <li class="list-group-item"><%= goal.calories %> daily calories, effective from <%= goal.created_at.strftime('%b %d, %Y %l:%M %p') %></li>
+      <% end %>
+    <% end %>
+    </ul>
+  </div>
+</div>
