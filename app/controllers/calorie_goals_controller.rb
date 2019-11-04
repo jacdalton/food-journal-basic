@@ -1,6 +1,6 @@
 class CalorieGoalsController < ApplicationController
   def index
-    @calorie_goals = policy_scope(CalorieGoal)
+    @calorie_goals = policy_scope(CalorieGoal).order(created_at: :desc)
   end
 
   def show_goal
