@@ -1,10 +1,7 @@
 class Entry < ApplicationRecord
   belongs_to :user
-  has_and_belongs_to_many :foods, -> { distinct } do
-    def << (food)
-      super food rescue ActiveRecord::RecordNotUnique
-    end
-  end
+  has_many :entry_foods
+  has_many :foods, through: :entry_foods
 
   validates :entry_date, presence: true, uniqueness: { scope: :user }
 
@@ -13,7 +10,7 @@ class Entry < ApplicationRecord
   end
 
   def sum_calories
-    self.foods.map { |f| f.calories }.sum
+    self.foods.map { |f| f.calories * f.entry_foods.find_by_entry_id(self).quantity }.sum
   end
 
 end

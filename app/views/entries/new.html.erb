@@ -4,6 +4,9 @@
       <%= f.input :entry_date %>
       <%= f.input :foods, collection: Food.where(user: current_user), include_blank: false %>
       <div id="errorMessage"></div>
+      <%= f.simple_fields_for :entry_foods do |p| %>
+        <%= p.input :quantity, label: 'Portion', placeholder: 'Ex. 0.5, 1.75, 3', hint: 'If nothing is entered, default value of 1 is used' %>
+      <% end %>
       <%= f.button :submit, onclick: 'verifyEntry()' %>
     <% end %>
   </div>
