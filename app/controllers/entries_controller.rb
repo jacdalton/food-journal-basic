@@ -18,8 +18,9 @@ class EntriesController < ApplicationController
   def create
     @entry = Entry.new(entry_params)
     @entry.user = current_user
-    @entry.foods << Food.find(params[:entry][:foods])
+    food = insert_food(@entry)
     if @entry.save
+      set_quantity(food, @entry)
       redirect_to entry_path(@entry)
     else
       render 'new'
@@ -30,8 +31,8 @@ class EntriesController < ApplicationController
   end
 
   def update
-    food = Food.find(params[:entry][:foods])
-    @entry.foods << food
+    food = insert_food(@entry)
+    set_quantity(food, @entry)
     if @entry.update(entry_params)
       redirect_to entry_path(@entry)
     else
@@ -53,7 +54,7 @@ class EntriesController < ApplicationController
   private
 
   def entry_params
-    params.require(:entry).permit(:entry_date, { foods: [] } )
+    params.require(:entry).permit(:entry_date, { foods: [] }, entry_food_attributes: :quantity )
   end
 
   def set_entry
@@ -62,5 +63,17 @@ class EntriesController < ApplicationController
 
   def authorize_entry
     authorize @entry
+  end
+
+  def insert_food(entry)
+    food = Food.find(params[:entry][:foods])
+    entry.foods << food
+    return food
+  end
+
+  def set_quantity(food, entry)
+    entry_food = EntryFood.where(food: food, entry: entry).first
+    entry_food.quantity = params[:entry][:entry_foods][:quantity].to_f
+    entry_food.save
   end
 end

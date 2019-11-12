@@ -31,13 +31,14 @@ ActiveRecord::Schema.define(version: 2019_11_04_181643) do
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
-  create_table "entries_foods", force: :cascade do |t|
+  create_table "entry_foods", force: :cascade do |t|
+    t.float "quantity", default: 1.0
     t.bigint "food_id"
     t.bigint "entry_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["entry_id"], name: "index_entries_foods_on_entry_id"
-    t.index ["food_id"], name: "index_entries_foods_on_food_id"
+    t.index ["entry_id"], name: "index_entry_foods_on_entry_id"
+    t.index ["food_id"], name: "index_entry_foods_on_food_id"
   end
 
   create_table "foods", force: :cascade do |t|
@@ -66,7 +67,7 @@ ActiveRecord::Schema.define(version: 2019_11_04_181643) do
 
   add_foreign_key "calorie_goals", "users"
   add_foreign_key "entries", "users"
-  add_foreign_key "entries_foods", "entries"
-  add_foreign_key "entries_foods", "foods"
+  add_foreign_key "entry_foods", "entries"
+  add_foreign_key "entry_foods", "foods"
   add_foreign_key "foods", "users"
 end
